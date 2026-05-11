@@ -233,9 +233,16 @@
             text-align: center;
         }
 
-        .contact-info {
-            max-width: 600px;
+        .contact-container {
+            max-width: 900px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
             color: var(--text-gray);
         }
 
@@ -252,6 +259,36 @@
 
         .email-link:hover {
             color: var(--white);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 178, 255, 0.2);
+            color: var(--white);
+            padding: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px rgba(0, 178, 255, 0.15);
+        }
+
+        .contact-form button {
+            align-self: flex-start;
+            margin-top: 0.5rem;
         }
 
         /* Footer */
@@ -286,6 +323,14 @@
             nav ul {
                 gap: 1rem;
                 font-size: 0.9rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form button {
+                width: 100%;
             }
         }
     </style>
@@ -350,12 +395,23 @@
 
     <section class="contact" id="contact">
         <h2 class="section-title">LET'S CREATE TOGETHER</h2>
-        <div class="contact-info">
-            <p>Ready to bring your project to life? We'd love to hear from you.</p>
-            <p>
-                <a href="mailto:contact@montanapromedia.com" class="email-link">contact@montanapromedia.com</a>
-            </p>
-            <p>Kalispell, Montana</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p>Ready to bring your project to life? We'd love to hear from you.</p>
+                <p>
+                    <a href="mailto:contact@montanapromedia.com" class="email-link">contact@montanapromedia.com</a>
+                </p>
+                <p>Kalispell, Montana</p>
+            </div>
+            
+            <form class="contact-form" action="https://formspree.io/f/mlgzaygw" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
+                <!-- Honeypot field to block bots -->
+                <input type="text" name="_gotcha" style="display:none !important">
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
         </div>
     </section>
 
